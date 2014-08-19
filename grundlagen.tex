@@ -1,0 +1,18 @@
+\section{Grundlagen}
+\label{sec:grundlagen}
+
+\subsection{Formale Definition von Automaten}
+
+In der Klausur ist es hilfreich, wenn man die formale Definition von Automaten in natürliche Sprache Übersetzen kann. Denn eigentlich steckt da schon alles drin, was man baucht:
+
+Für jeden Automaten brauchen wir Zustände ($Q$, Menge der Zustände), ein Eingabealphabet ($\Sigma$, Groß--Sigma) und Vorschriften darüber, was beim Lesen von Eingaben getan werden soll ($\sigma$, Klein--Sigma). Des weiteren benötigen wir einen Startzustand ($q_0$) und einen bzw. mehrere Endzustände ($F$). 
+
+Somit ist ein Automat A definiert werden als $A=(Q,\Sigma, \sigma, q_0, F)$.
+
+Bei Kellerautomaten benötigen wir zusätzlich das Kelleralphabet ($\Gamma$, Groß--Gamma, die Menge der Zeichen, die in den Keller geschrieben werden dürfen). Da schon im ersten Ausführungsschritt als erstes ein Zeichen vom Keller gelesen wird, ist ein Zeichennotwendig, das bereits zum Start des Automaten im Keller ist ($k_0$). Daher lautet die formale Definition eines Kellerautomaten $A=(Q,\Sigma, \Gamma, \sigma, q_0, k_0, F)$.
+
+\subsection{Definition von $\sigma$}
+
+In Klausuren sind Eingabealphabet $\Sigma$ meist angegeben. In $Q$ sind alle für die Lösung notwendigen Zustände und die Endzustände in $F$ ergeben sich wieder meistens aus der Aufgabenstellung. Die eigentliche Arbeit liegt also in der Definition der Übergänge $\sigma$ zwischen den Zuständen.
+
+Bei $\sigma$ handelt es sich um eine Funktion. Eine genau definierte Eingabe wird auf eine Ausgabe (deterministische Automaten) oder mehrere (nicht deterministische Automaten) Ausgaben abgebildet.
