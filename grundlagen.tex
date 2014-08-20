@@ -1,7 +1,7 @@
 \section{Grundlagen}
 \label{sec:grundlagen}
 
-\subsection{Formale Definition von Automaten}
+\subsection{Definition von Automaten}
 
 In der Klausur ist es hilfreich, wenn man die formale Definition von Automaten in natürliche Sprache Übersetzen kann. Denn eigentlich steckt da schon alles drin, was man baucht:
 
@@ -16,3 +16,37 @@ Bei Kellerautomaten benötigen wir zusätzlich das Kelleralphabet ($\Gamma$, Gro
 In Klausuren sind Eingabealphabet $\Sigma$ meist angegeben. In $Q$ sind alle für die Lösung notwendigen Zustände und die Endzustände in $F$ ergeben sich wieder meistens aus der Aufgabenstellung. Die eigentliche Arbeit liegt also in der Definition der Übergänge $\sigma$ zwischen den Zuständen.
 
 Bei $\sigma$ handelt es sich um eine Funktion. Eine genau definierte Eingabe wird auf eine Ausgabe (deterministische Automaten) oder mehrere (nicht deterministische Automaten) Ausgaben abgebildet.
+
+In der Automatentafel sind somit alle Komponenten anzugeben, die man für eine solche Zuordnung benötigt.
+Für einen Kellerautomat sind dies:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c||c|c|}
+\hline
+\multicolumn{3}{|c||}{Parameter} & \multicolumn{2}{c|}{Funktionswert} \\ \hline
+Zustand   & Eingabe   & Keller  & Zustand          & Keller          \\ \hline
+$q_0$       & a         & $\varepsilon$       & $q_0$              & X               \\ \hline
+$q_0$       & a         & X       & $q_1$              & Y               \\ \hline
+\end{tabular}
+\caption{Automatentafel: Kellerautomat (Beispiel)}
+\label{tbl:bspkeller}
+\end{table}
+
+Wird der Automat gezeichnet, so müssen diese Informationen ebenfalls im Diagramm zu erkennen sein:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+%  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[initial,state] (A)                    {$q_0$};
+  \node[state]         (B) [right of=A] {$q_1$};
+
+  \path (A) edge [loop above] node {a,$\varepsilon$,X} (A)
+            edge              node {a,X,Y} (B);
+\end{tikzpicture}
+\caption{Diagramm: Kellerautomat (Beispiel)
+}\label{fig:bspkeller}
+\end{figure}
