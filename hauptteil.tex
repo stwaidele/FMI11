@@ -3,49 +3,63 @@
 
 \subsection{Komplexaufgabe 2.2}
 
+Gegeben ist $L=\{ { a }^{ i }{ b }^{ i }{ c }^{ k }|i,k\in { N }\} \subseteq \left\{ a,b,c \right\} *$.
+Somit sollen alle Worte akzeptiert werden, die mit einem oder mehr $a$ beginnen, dann gleich viele $b$ enthalten 
+und zuletzt auf ein oder mehr $c$ enden.
 
+Durch die Dreiteilung des Wortes bietet sich ein Automat mit mindestens drei Zuständen an. Jeweils einer zum 
+Lesen jedes Buchstabens.
 
+\begin{figure}[H]
+\centering
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
                     semithick]
 %  \tikzstyle{every state}=[fill=red,draw=none,text=white]
 
-  \node[initial,state] (A)                    {$q_a$};
-  \node[state]         (B) [above right of=A] {$q_b$};
-  \node[state]         (D) [below right of=A] {$q_d$};
-  \node[state]         (C) [below right of=B] {$q_c$};
-  \node[state,accepting]         (E) [below of=D]       {$q_e$};
+  \node[initial,state] 		(A)              {$q_a$};
+  \node[state]         		(B) [right of=A] {$q_b$};
+  \node[state]         		(C) [right of=B] {$q_c$};
 
-  \path (A) edge              node {0,1,L} (B)
-            edge              node {1,1,R} (C)
-        (B) edge [loop above] node {1,1,L} (B)
-            edge              node {0,1,L} (C)
-        (C) edge              node {0,1,L} (D)
-            edge [bend left]  node {1,0,R} (E)
-        (D) edge [loop below] node {1,1,R} (D)
-            edge              node {0,1,R} (A)
-        (E) edge [bend left]  node {1,0,R} (A);
+  \path 
+  		(A)	edge	[loop below]	node {$a, \#, \#X$} (A)
+			edge	[loop above]	node {$a, X, XX$} 						(A)
+			edge					node {$b, X, \varepsilon$} (B)
+  		(B)	edge	[loop above]	node {$b, X, \varepsilon$} (B)
+			edge					node {$b, \#, \#$} (C)
+  		(C)	edge	[loop above]	node {$c, \#, \#$} (C)
+  ;
 \end{tikzpicture}
+\caption{Diagramm: Kellerautomat ($a^ib^ic^k$)}
+\label{fig:aibick}
+\end{figure}
 
+Der Automat muss speichern, wie viele $a$ von der Eingabe gelesen wurden, um anschließend die Zahl der $b$ 
+kontrollieren zu können. Hierfür schreibt der Automat in Zustand $q_0$ für jedes gelesene $a$ ein $X$ in den Keller. Hierbei ist zu 
+beachten, dass in jedem Schritt zunächt ein Zeichen aus dem Keller geholt wird, welches wieder zurückgelegt wird.
+Dies ist beim ersten Durchlauf (unterer Pfeil) das Zeichen für den leeren Keller $\#$ 
+und bei allen weiteren Durchläufen (oberer Pfeil) das zuvor geschriebene $X$.
 
-\subsection{Busy Beaver 5}
+Sobald das erste $b$ gelesen wird, wechselt der Automat in den Zustand $q_b$. Hier werden dann die $X$ aus dem Keller entnommen
+und nichts (also das leere Element $\varepsilon$) zurückgeschrieben. Bis zu dem Punkt, an dem der Keller leer ist und als Eingabe ein $c$
+gelesen wird.
 
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
-                    semithick]
-%  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+In Zustand $q_c$ werden dann die verbleibenden $c$ gelesen, der Keller bleibt leer. Da bei leerem Keller und leerer Eingabe
+der Automat das Wort akzeptiert, ist kein weiterer Zustand notwendig.
 
-  \node[initial,state] (A)                    {$q_a$};
-  \node[state]         (B) [above right of=A] {$q_b$};
-  \node[state]         (D) [below right of=A] {$q_d$};
-  \node[state]         (C) [below right of=B] {$q_c$};
-  \node[state]         (E) [below of=D]       {$q_e$};
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c||c|c|}
+\hline
+\multicolumn{3}{|c||}{Parameter} & \multicolumn{2}{c|}{Funktionswert} \\ \hline
+Zustand   	& Eingabe   & Keller  		& Zustand          	& Keller          \\ \hline
+$q_a$       & a         & $\#$			& $q_a$             & X               \\ \hline
+$q_a$       & a         & X       		& $q_a$             & XX              \\ \hline
+$q_a$       & b         & X       		& $q_b$     		& $\varepsilon$   \\ \hline
+$q_b$       & b         & X       		& $q_b$     		& $\varepsilon$   \\ \hline
+$q_b$       & c         & $\#$     		& $q_c$     		& $\#$			  \\ \hline
+$q_c$       & c         & $\#$     		& $q_c$     		& $\#$			  \\ \hline
+\end{tabular}
+\caption{Automatentafel: Kellerautomat ($a^ib^ic^k$)}
+\label{tbl:bspkeller}
+\end{table}
 
-  \path (A) edge              node {0,1,L} (B)
-            edge              node {1,1,R} (C)
-        (B) edge [loop above] node {1,1,L} (B)
-            edge              node {0,1,L} (C)
-        (C) edge              node {0,1,L} (D)
-            edge [bend left]  node {1,0,R} (E)
-        (D) edge [loop below] node {1,1,R} (D)
-            edge              node {0,1,R} (A)
-        (E) edge [bend left]  node {1,0,R} (A);
-\end{tikzpicture}
