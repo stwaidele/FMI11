@@ -1,6 +1,6 @@
 filename = vorlage
 
-neededfiles = abkuerzungen.tex deckblatt.tex einleitung.tex einstellungen.tex grundlagen.tex hauptteil.tex schluss.tex literatur.bib
+neededfiles = abkuerzungen.tex deckblatt.tex einleitung.tex einstellungen.tex fmi11.tex cpp01.tex schluss.tex literatur.bib
 
 
 UNAME_S := $(shell uname -s)

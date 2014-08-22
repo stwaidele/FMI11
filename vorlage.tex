@@ -66,10 +66,11 @@
 %\newcommand{\myref}[1]{„\ref{#1}~\nameref{#1}“}
 \newcommand{\myref}[1]{\textit{\ref{#1}~\nameref{#1}}}
 
-%% Für Codeblöcke mit Syntax-Highlighting
-%% http://www.ctan.org/tex-archive/macros/latex/contrib/minted/
-%\usepackage{minted}
-%\definecolor{bg}{rgb}{0.95,0.95,0.95}
+% Für Codeblöcke mit Syntax-Highlighting
+% http://www.ctan.org/tex-archive/macros/latex/contrib/minted/
+\usepackage{mdframed}
+\usepackage{minted}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
 
 
 \makeatother
@@ -135,26 +136,25 @@
 \begin{spacing}{1.5} % Zeilenabstand: 1,5 fuer den Textteil
 
 \include{einleitung}
-\include{grundlagen}
-\include{hauptteil}
+\include{fmi11}
+\include{cpp01}
 \include{schluss}
 \include{anhang}
 
 \end{spacing}
 
-\clearpage
-
-% Literaturverzeichniss - Ab hier wieder Roemische Seitenzahlen
-\pagestyle{plain}
-\pagenumbering{roman}
-\setcounter{page}{\theromanPagenumber}
-%\addcontentsline{toc}{section}{Literatur-- und Quellenverzeichnis}
-\renewcommand{\refname}{Literatur-- und Quellenverzeichnis}
-\bibliographystyle{apalike}
-\bibliography{literatur}
-\onehalfspacing
-\clearpage
-
+%\clearpage
+%
+%% Literaturverzeichniss - Ab hier wieder Roemische Seitenzahlen
+%\pagestyle{plain}
+%\pagenumbering{roman}
+%\setcounter{page}{\theromanPagenumber}
+%%\addcontentsline{toc}{section}{Literatur-- und Quellenverzeichnis}
+%\renewcommand{\refname}{Literatur-- und Quellenverzeichnis}
+%\bibliographystyle{apalike}
+%\bibliography{literatur}
+%\onehalfspacing
+%\clearpage
 
 \end{document}
 

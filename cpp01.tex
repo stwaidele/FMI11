@@ -1,0 +1,29 @@
+\section{CPP01 --- Mehrdimensionale Arrays}
+\label{sec:cpp01}
+
+\subsection{Aufgabenstellung}
+Klausuraufgabe aus CPP01:
+
+\begin{quote}
+Das Programm enthält die Klasse Artikel mit den Attributen int Preis, int Artikelnummer und eine zweidimensionale Rabatttabelle mit 2 Zeilen und 5 Spalten, in der in der ersten Zeile angegeben wird um welchen Kundentyp es sich handelt (1,2,3,4,5) und in der zweiten, wie viel Rabatt der jeweilige Kundentyp bekommt (1\%, 3\%, 5\%, 10\%, 20\%). Das Programm soll den Endpreis eines Artikels für den jew. Kundentyp ausgeben. 
+\end{quote}
+
+\subsection{Eindimensionales Array}
+
+Ich würde das so machen, wie in Listing \ref{src:cpp1dim} gezeigt: Mit einem eindimensionalen Array für die Rabatte. Dann kann man den Prozentsatz direkt lesen und in Rechnungen verwenden. Der Kundentyp dient hierbei als Index für das Array.
+
+\begin{singlespacing}
+\inputminted[linenos]{c++}{cpp1dim.cpp}
+\end{singlespacing}
+%\caption{C++: Rabatttabelle mit eindimmensionalem Array}
+%\label{src:cpp1dim}
+
+\subsection{Zweidimensionales Array}
+
+Als Alternative mit zweidimensionalem Array könnte man in die erste Zeile die Kundentypen schreiben. Diese können dann auch anders nummeriert werden. In der zweiten Zeile steht dann der Rabattsatz. Um diesen zu ermitteln muss man durch das Array durchlaufen, bis man den Kundentyp gefunden hat. Hier mein Vorschlag dazu steht in Listing \ref{src:cppndim}.
+
+\begin{singlespacing}
+\inputminted[linenos]{c++}{cpp1dim.cpp}
+\end{singlespacing}
+%\caption{C++: Rabatttabelle mit zweidimmensionalem Array}
+%\label{src:cppndim}
